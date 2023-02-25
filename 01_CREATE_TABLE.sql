@@ -162,7 +162,7 @@ CREATE TABLE IF NOT EXISTS dbo.t_specimen(
     code            varchar(40) NOT NULL,
     quantity        integer NOT NULL,
     dateRegister    date,
-    idLibrary       integer NOT NULL,
+    idBook          integer NOT NULL,
     idSpecimenState integer NOT NULL,
     idZone          integer NOT NULL,
     state           varchar(1) DEFAULT '1'
@@ -175,7 +175,7 @@ ALTER TABLE dbo.t_specimen
 ALTER TABLE dbo.t_specimen
     add constraint fk_id_zone
     foreign key (idZone)
-    references dbo.t_zona (idZone);
+    references dbo.t_zone (idZone);
 
 ALTER TABLE dbo.t_specimen
     add constraint fk_id_spacimen_state
@@ -184,5 +184,5 @@ ALTER TABLE dbo.t_specimen
 
 ALTER TABLE dbo.t_specimen
     add constraint fk_id_book_librar
-    foreign key (idLibrary)
-    references dbo.t_book (idLibrary);
+    foreign key (idBook)
+    references dbo.t_book (idBook);
