@@ -51,3 +51,22 @@ begin
 end;
 $$
 language 'plpgsql';
+
+----------------------------------------------------------------------
+--fn_save_author function
+----------------------------------------------------------------------
+create or replace function dbo.fn_save_author(
+in in_name varchar,
+in in_lastName varchar
+)
+returns setof dbo.t_author 
+as 
+$$
+begin 
+	insert into dbo.t_author(name,lastname,state)
+	values(in_name,in_lastname,default);
+	return query
+    select ta.* from dbo.t_author ta where ta.idauthor = lastval();
+end;
+$$
+language 'plpgsql';
